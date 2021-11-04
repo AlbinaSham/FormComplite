@@ -1,0 +1,38 @@
+.navBar{
+    background-color: #f0f5f7;
+    
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 3%;
+
+    
+}
+.links{
+    background-color:#ece8f3 ;
+    float: right;
+    text-decoration: none;
+    font-size: 1.8rem;
+    margin-left: 60%;
+    border: none;
+    
+    
+}
+
+.form{
+   
+    padding:5% 15% ;
+    border: 1px solid grey;
+    width: 120px;
+    background-color: #66c8e0;
+    color: white;
+    border-radius: 5px;
+}
+.students{
+    margin-left: 5%;
+    padding:5% 15% ;
+    border: 1px solid grey;
+    width: 120px;
+    background-color: #66c8e0;
+    color: white;
+    border-radius: 5px;
+}

@@ -3,6 +3,11 @@ const express = require ('express');
 const app = express();
 const mysql = require('mysql2'); 
 const cors = require('cors');
+var bodyParser = require('body-parser');
+var multer = require('multer')
+var upload = multer({dest:'uploads/'});
+app.use(bodyParser.urlencoded({extended: true}))
+const path = require('path');
 
 
 app.use(cors());
@@ -18,7 +23,25 @@ const db = mysql.createConnection({
   database: "formsubmitdb",
 });
 
-app.post("/create", (req, res) => {
+
+
+
+
+// handle storage using multer
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+     cb(null, 'uploads');
+  },
+  filename: function (req, file, cb) {
+     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+  }
+});
+
+var upload = multer({ storage: storage });
+
+
+
+app.post("/create", upload.single('dataFile'), (req, res, next) => {
   const fname = req.body.fname;
   const lName = req.body.lName;
   const email = req.body.email;
@@ -26,11 +49,12 @@ app.post("/create", (req, res) => {
   const skills = req.body.skills;
   const status = req.body.status;
   const availability = req.body.availability;
+  const file = req.files;
   
 
    db.query(
-    "INSERT INTO  formsubmittable (fname, lName, email, phone, skills, status, availability) VALUES (?,?,?,?,?,?,?)",
-    [fname, lName, email, phone, skills, status, availability],
+    "INSERT INTO  formsubmittable (fname, lName, email, phone, skills, status, availability, file) VALUES (?,?,?,?,?,?,?,'" + req.file + "')",
+    [fname, lName, email, phone, skills, status, availability, file],
     (err, result) => {
       if (err) {
         console.log(err);

@@ -1,0 +1,28 @@
+.login-wrapper{
+ display: flex;
+ justify-content: center;
+ background-color: #f0f5f7;
+ padding-bottom: 20%;
+
+}
+.login-container{
+    width: 30%;
+    
+    margin-top: 10%;
+    background-color: white;
+    border-color: #d9dce0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+.lofo{
+    width: 50%;
+    
+   
+}
+.login-form{
+    align-items: center;
+}
+.submit{
+    padding: 5%;
+}
